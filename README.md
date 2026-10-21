@@ -112,7 +112,6 @@ Every building has two or more ways in and a roof you can climb to.
 
 ## Our promises
 
-- **Money only buys cosmetics.** No stat unlocks, ever.
 - Built for PC first and tuned to run on modest hardware.
 - An original world, characters and art.
 
