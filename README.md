@@ -113,7 +113,8 @@ Every building has two or more ways in and a roof you can climb to.
 ## Our promises
 
 - Built for PC first and tuned to run on modest hardware.
-- An original world, characters and art.
+- Community ideas are a priority and consistently kept up with.
+- Constant updates, new features, complete overhauls and more.
 
 ---
 
