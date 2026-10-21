@@ -1,0 +1,297 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>POLYFALL Road to Launch</title>
+<meta charset="utf-8">
+<meta name="description" content="Live development progress for POLYFALL, a low-poly zero-build battle royale.">
+<link rel="icon" href="img/icon128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one column "flight path" — hero meter first, then phases, areas, recent work, next/timeline, playtest.
+   Single dark look on purpose: it is the game's own world (faceted charcoal ground, teal + orange shards). */
+:root {
+  color-scheme: dark;
+  --ground: #15171B;   /* game Black */
+  --panel: #1F2228;
+  --panel-2: #2A2E35;  /* game Charcoal */
+  --line: #3A3F48;
+  --ink: #E6EEF2;      /* WhiteCool */
+  --muted: #9AA3AD;
+  --teal: #1FB5AC; --glow: #3EF2E6; --teal-dark: #147A78;
+  --orange: #FF8A1F; --gold: #F2A51A;
+  --violet: #7A2BD9;
+  --f-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --f-data: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+body { background: var(--ground); color: var(--ink); font: 400 16px/1.55 var(--f-body); }
+#facets { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 64px; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: .02em; display: flex; align-items: center; gap: 12px; }
+h2::before { content: ""; width: 14px; height: 18px; background: var(--orange); clip-path: polygon(50% 0, 100% 35%, 80% 100%, 20% 100%, 0 35%); }
+.eyebrow { font: 600 .75rem/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+a { color: var(--glow); }
+:focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; }
+
+/* hero */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; font: 700 1.1rem var(--f-display); letter-spacing: .08em; }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.mode { font: 600 .72rem var(--f-display); letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--line); color: var(--muted); }
+.mode.dev { border-color: var(--gold); color: var(--gold); }
+.hero { display: grid; gap: 22px; }
+#title { width: 100%; max-width: 760px; height: auto; display: block; }
+.lede { max-width: 62ch; color: var(--muted); font-size: 1.05rem; margin: 0; }
+
+/* overall meter */
+.meter { background: linear-gradient(180deg, rgba(42,46,53,.92), rgba(31,34,40,.92)); border: 1px solid var(--line); padding: 26px clamp(16px, 4vw, 34px) 30px; display: grid; gap: 18px; }
+.meter-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.big { font: 700 clamp(3.4rem, 11vw, 6rem)/.9 var(--f-data); color: var(--ink); font-variant-numeric: tabular-nums; }
+.big small { font-size: .4em; color: var(--muted); margin-left: 4px; }
+.meter-meta { text-align: right; display: grid; gap: 4px; color: var(--muted); font-size: .92rem; }
+.meter-meta b { color: var(--gold); font-family: var(--f-display); font-weight: 600; }
+.shards { display: grid; grid-template-columns: repeat(50, 1fr); gap: 3px; height: 34px; }
+.shard { background: var(--panel-2); clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); transition: background .25s ease, transform .25s ease; }
+.shard.on { background: linear-gradient(180deg, var(--glow), var(--teal) 55%, var(--teal-dark)); }
+.shard.tip { background: linear-gradient(180deg, #fff, var(--gold) 50%, var(--orange)); transform: translateY(-3px); }
+.track { position: relative; height: 34px; }
+.track .tick { position: absolute; top: 0; transform: translateX(-50%); display: grid; justify-items: center; gap: 4px; font: 600 .7rem/1.1 var(--f-display); letter-spacing: .04em; color: var(--muted); white-space: nowrap; }
+.track .tick::before { content: ""; width: 2px; height: 10px; background: var(--line); }
+.track .tick.done { color: var(--teal); } .track .tick.current { color: var(--gold); }
+@media (max-width: 640px) { .track .tick span { display: none; } .track .tick.current span { display: block; } .shards { grid-template-columns: repeat(25, 1fr); } }
+
+/* phases */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 12px; }
+.phase { background: rgba(31,34,40,.9); border: 1px solid var(--line); padding: 16px; display: grid; gap: 10px; align-content: start; }
+.phase.current { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+.phase .num { font: 700 .8rem var(--f-data); color: var(--muted); }
+.phase h3 { font-size: 1.05rem; }
+.phase p { margin: 0; color: var(--muted); font-size: .88rem; min-width: 0; }
+.chip { justify-self: start; font: 600 .68rem/1 var(--f-display); letter-spacing: .1em; text-transform: uppercase; padding: 5px 8px; }
+.chip.done { background: var(--teal-dark); color: #DFFBF8; } .chip.current { background: var(--gold); color: #1b1203; }
+.chip.next { background: var(--panel-2); color: var(--ink); } .chip.later { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.mini { height: 6px; background: var(--panel-2); overflow: hidden; }
+.mini i { display: block; height: 100%; width: 0; background: var(--teal); transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+.phase.current .mini i { background: var(--gold); }
+.mini-row { display: flex; justify-content: space-between; font: 500 .75rem var(--f-data); color: var(--muted); }
+
+/* areas */
+.areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 14px 28px; }
+.area { display: grid; gap: 8px; }
+.area-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.area-head h3 { font-size: 1.05rem; }
+.area-head span { font: 700 1rem var(--f-data); color: var(--glow); font-variant-numeric: tabular-nums; }
+.bar { height: 16px; background: var(--panel-2); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: repeating-linear-gradient(115deg, var(--teal) 0 14px, var(--glow) 14px 18px); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.area p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+/* recent */
+.recent { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(185px, 100%), 1fr)); gap: 14px; }
+.card { background: rgba(31,34,40,.95); border: 1px solid var(--line); display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+.card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; background: var(--panel-2); }
+.card div { padding: 12px 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.card time { font: 500 .75rem var(--f-data); color: var(--muted); }
+.card h3 { font-size: 1rem; }
+.card p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+/* next + timeline */
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px; }
+.next { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.next li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+.next li::before { content: ""; width: 12px; height: 12px; margin-top: 6px; border: 2px solid var(--gold); transform: rotate(45deg); }
+.timeline { list-style: none; margin: 14px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--line); display: grid; gap: 14px; }
+.timeline li { position: relative; display: grid; gap: 2px; }
+.timeline li::before { content: ""; position: absolute; left: -26px; top: 6px; width: 12px; height: 12px; background: var(--ground); border: 2px solid var(--line); transform: rotate(45deg); }
+.timeline li.done::before { background: var(--teal); border-color: var(--teal); }
+.timeline time { font: 500 .75rem var(--f-data); color: var(--muted); }
+.timeline li:not(.done) span { color: var(--muted); }
+
+/* playtest + discord */
+.cta { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 14px; }
+.box { background: rgba(31,34,40,.95); border: 1px solid var(--line); padding: 20px; display: grid; gap: 10px; align-content: start; }
+.count { font: 700 2rem var(--f-data); color: var(--gold); font-variant-numeric: tabular-nums; }
+.btn { justify-self: start; display: inline-flex; align-items: center; gap: 10px; font: 700 .95rem var(--f-display); letter-spacing: .06em; text-transform: uppercase; text-decoration: none; color: #0f1214; background: var(--glow); padding: 12px 18px; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+.btn:hover { background: #fff; }
+.box p { margin: 0; color: var(--muted); }
+
+/* dev board */
+.dev-board { display: grid; gap: 18px; }
+.dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 14px; }
+.dev-grid .box h3 { font-size: 1rem; }
+.dev-grid ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink); font-size: .92rem; }
+.dev-grid li.done { color: var(--muted); text-decoration: line-through; }
+.dev-grid .tag { font: 600 .68rem var(--f-display); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+footer { color: var(--muted); font-size: .85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (prefers-reduced-motion: reduce) { .mini i, .bar i, .shard { transition: none !important; } }
+</style>
+
+<canvas id="facets" aria-hidden="true"></canvas>
+<main class="wrap">
+  <header class="top">
+    <div class="brand"><img src="img/icon128.png" alt=""><span>POLYFALL</span></div>
+    <span class="mode" id="mode">Public roadmap</span>
+  </header>
+
+  <section class="hero" aria-labelledby="h-title">
+    <h1 id="h-title"><svg id="title" role="img" aria-label="Road to launch"></svg></h1>
+    <p class="lede">POLYFALL is a low-poly, zero-build battle royale where movement is the build. This page tracks the whole way from first file to Early Access, updated after every build.</p>
+    <div class="meter" role="group" aria-label="Overall progress">
+      <div class="meter-head">
+        <div><div class="eyebrow">Road to Early Access</div><div class="big" id="overall">0<small>%</small></div></div>
+        <div class="meter-meta"><span>Now in <b id="now-phase">…</b></span><span id="updated"></span></div>
+      </div>
+      <div class="shards" id="shards" aria-hidden="true"></div>
+      <div class="track" id="track" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-phases"><h2 id="h-phases">Phases</h2><div class="phases" id="phases" style="margin-top:16px"></div></section>
+  <section aria-labelledby="h-areas"><h2 id="h-areas">Parts of the game</h2><div class="areas" id="areas" style="margin-top:16px"></div></section>
+  <section aria-labelledby="h-recent"><h2 id="h-recent">Recently done</h2><div class="recent" id="recent" style="margin-top:16px"></div></section>
+  <section class="split">
+    <div><h2>Up next</h2><ul class="next" id="next"></ul></div>
+    <div><h2>Milestones</h2><ol class="timeline" id="timeline"></ol></div>
+  </section>
+  <section class="cta" aria-label="Playtest and community">
+    <div class="box"><span class="eyebrow" id="pt-label">Closed playtest</span><div class="count" id="countdown">Date TBA</div><p id="pt-text">20 slots. Sign-ups open in the Discord; turn on Playtest Pings to hear first.</p></div>
+    <div class="box" id="discord-box"><span class="eyebrow">Community</span><h3>Join the Discord</h3><p>Dev logs, clips, patch notes and playtest sign-ups.</p><a class="btn" id="discord" href="#" target="_blank" rel="noopener">Join the server</a></div>
+  </section>
+  <section class="dev-board" id="devboard" hidden aria-labelledby="h-dev"><h2 id="h-dev">Dev board (private)</h2><div class="dev-grid" id="devgrid"></div></section>
+  <footer><span>POLYFALL · solo dev project · Unreal Engine 5.8</span><span>Percentages are estimates and move with real work.</span></footer>
+</main>
+
+<script>
+const MODE = window.PF_MODE || "public";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---- faceted low-poly background (same look as the game's icons) ----
+(function facets() {
+  const c = document.getElementById("facets"), x = c.getContext("2d");
+  function draw() {
+    const W = c.width = innerWidth, H = c.height = innerHeight, n = Math.max(6, Math.round(W / 140)), m = Math.max(4, Math.round(H / 140));
+    let s = 44; const r = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
+    const P = []; for (let j = 0; j <= m; j++) { P.push([]); for (let i = 0; i <= n; i++) { const e = !i || !j || i === n || j === m;
+      P[j].push([i * W / n + (e ? 0 : (r() - .5) * W / n * .7), j * H / m + (e ? 0 : (r() - .5) * H / m * .7)]); } }
+    const lo = [21, 23, 27], hi = [42, 46, 53];
+    for (let j = 0; j < m; j++) for (let i = 0; i < n; i++) {
+      const a = P[j][i], b = P[j][i + 1], cc = P[j + 1][i + 1], d = P[j + 1][i];
+      for (const t of (i + j) % 2 ? [[a, b, cc], [a, cc, d]] : [[a, b, d], [b, cc, d]]) {
+        const k = Math.min(1, Math.max(0, 1 - ((t[0][0] + t[1][0] + t[2][0]) / 3 / W + (t[0][1] + t[1][1] + t[2][1]) / 3 / H) / 2 + (r() - .5) * .2)) * .55;
+        x.fillStyle = `rgb(${lo.map((v, q) => Math.round(v + (hi[q] - v) * k)).join(",")})`;
+        x.beginPath(); x.moveTo(...t[0]); x.lineTo(...t[1]); x.lineTo(...t[2]); x.closePath(); x.fill(); x.strokeStyle = x.fillStyle; x.stroke();
+      }
+    }
+  }
+  draw(); addEventListener("resize", draw);
+})();
+
+// ---- "PF Shard" lettering (the game's own polygon alphabet) ----
+const G = {
+  R: [[[0,2],[2,0],[7,0],[10,3],[10,6.5],[8,8.5],[10.5,14],[7.3,14],[5.2,9.5],[3,9.5],[3,14],[0,14]],[[3,3],[6.2,3],[7,4],[7,5.5],[6.2,6.5],[3,6.5]]],
+  O: [[[5,0],[10,3],[10,11],[5,14],[0,11],[0,3]],[[5,3.4],[7,4.6],[7,9.4],[5,10.6],[3,9.4],[3,4.6]]],
+  A: [[[3.2,0],[6.8,0],[10,14],[7,14],[6.4,11],[3.6,11],[3,14],[0,14]],[[4.2,8.2],[5.8,8.2],[5,4]]],
+  D: [[[0,0],[7,0],[10,3],[10,11],[7,14],[0,14]],[[3,3],[6,3],[7,4],[7,10],[6,11],[3,11]]],
+  T: [[[0,0],[10,0],[10,3],[6.5,3],[6.5,14],[3.5,14],[3.5,3],[0,3]]],
+  L: [[[0,1.5],[1.5,0],[3,0],[3,11],[10,11],[10,12.5],[8.5,14],[0,14]]],
+  U: [[[0,0],[3,0],[3,11],[7,11],[7,0],[10,0],[10,12],[8,14],[2,14],[0,12]]],
+  N: [[[0,14],[0,0],[3,0],[7,7.5],[7,0],[10,0],[10,14],[7,14],[3,6.5],[3,14]]],
+  C: [[[2,0],[10,0],[10,3],[3,3],[3,11],[10,11],[10,14],[2,14],[0,12],[0,2]]],
+  H: [[[0,0],[3,0],[3,5.6],[7,5.6],[7,0],[10,0],[10,14],[7,14],[7,8.4],[3,8.4],[3,14],[0,14]]],
+  E: [[[0,2],[2,0],[10,0],[10,3],[3,3],[3,5.6],[8.5,5.6],[8.5,8.4],[3,8.4],[3,11],[10,11],[10,14],[0,14]]],
+  V: [[[0,0],[3.2,0],[5,9],[6.8,0],[10,0],[6.8,14],[3.2,14]]],
+  B: [[[0,0],[7,0],[9.5,2.5],[9.5,5],[8,7],[10,9],[10,11.5],[7.5,14],[0,14]],[[3,3],[6,3],[6.5,3.5],[6.5,5],[6,5.6],[3,5.6]],[[3,8.4],[6.5,8.4],[7,9],[7,10.5],[6.5,11],[3,11]]],
+};
+function lettering(svg, lines) {
+  const s = 6, gap = 1.4, NS = "http://www.w3.org/2000/svg"; let y = 6, maxW = 0, out = "", id = 0;
+  for (const [text, cols] of lines) {
+    let x = 6, k = 0;
+    for (const ch of text) {
+      if (ch === " ") { x += 6 * s; continue; }
+      const d = G[ch].map(r => "M" + r.map(p => `${(x + p[0] * s).toFixed(1)},${(y + p[1] * s).toFixed(1)}`).join(" L") + "Z").join(" ");
+      const base = cols[k++ % cols.length], w = 10 * s, h = 14 * s, cid = "c" + id++;
+      out += `<clipPath id="${cid}"><path d="${d}" clip-rule="evenodd"/></clipPath>
+        <path d="${d}" transform="translate(0 ${s * .7})" fill="#000" opacity=".55" fill-rule="evenodd" stroke="#000" stroke-width="${s * 1.3}"/>
+        <path d="${d}" fill="#15171B" fill-rule="evenodd" stroke="#15171B" stroke-width="${s * 1.3}" stroke-linejoin="miter"/>
+        <g clip-path="url(#${cid})"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${base}"/>
+        <polygon points="${x},${y} ${x + w},${y} ${x},${y + h * .62}" fill="#fff" opacity=".28"/>
+        <polygon points="${x + w},${y + h * .55} ${x + w},${y + h} ${x + w * .35},${y + h}" fill="#000" opacity=".25"/></g>`;
+      x += (10 + gap) * s;
+    }
+    maxW = Math.max(maxW, x); y += 14 * s + 16;
+  }
+  svg.setAttribute("viewBox", `0 0 ${maxW} ${y}`);
+  svg.innerHTML = out;
+}
+
+const $ = (id) => document.getElementById(id);
+const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+const fmtDate = (iso) => iso ? new Date(iso + "T12:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }) : "";
+
+function animateNumber(el, to) {
+  if (reduce) { el.firstChild.nodeValue = to; return; }
+  const t0 = performance.now(), dur = 1400;
+  (function step(t) { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    el.firstChild.nodeValue = Math.round(to * e); if (k < 1) requestAnimationFrame(step); })(t0);
+}
+
+function render(d, dev) {
+  $("mode").textContent = MODE === "dev" ? "Private dev view" : "Public roadmap";
+  if (MODE === "dev") $("mode").classList.add("dev");
+  lettering($("title"), MODE === "dev" ? [["ROAD TO LAUNCH", ["#1FB5AC", "#3EF2E6"]], ["DEV BOARD", ["#FF8A1F", "#F2A51A"]]]
+                                       : [["ROAD TO", ["#1FB5AC", "#3EF2E6"]], ["LAUNCH", ["#FF8A1F", "#F2A51A"]]]);
+  const total = d.phases.reduce((a, p) => a + p.months, 0);
+  const overall = Math.round(d.phases.reduce((a, p) => a + p.months * p.pct, 0) / total);
+  const cur = d.phases.find(p => p.status === "current") || d.phases[0];
+  $("now-phase").textContent = `Phase ${cur.id} · ${cur.name}`;
+  $("updated").textContent = "";   // no dates on the public roadmap (his rule 2026-10-21)
+  if (new URLSearchParams(location.search).has("still")) $("overall").firstChild.nodeValue = overall; else animateNumber($("overall"), overall);
+
+  // shard meter + phase ticks placed by planned months
+  const N = innerWidth <= 640 ? 25 : 50, sh = $("shards"); sh.innerHTML = "";
+  for (let i = 0; i < N; i++) sh.appendChild(Object.assign(document.createElement("i"), { className: "shard" }));
+  const lit = Math.round(N * overall / 100);
+  [...sh.children].forEach((el, i) => { if (i < lit) setTimeout(() => el.classList.add(i === lit - 1 ? "tip" : "on"), reduce ? 0 : 200 + i * 45); });
+  let acc = 0; $("track").innerHTML = d.phases.map(p => { const left = (acc / total) * 100; acc += p.months;
+    return `<div class="tick ${p.status}" style="left:${Math.min(97, Math.max(3, left + (p.months / total) * 50))}%"><span>${esc(p.name)}</span></div>`; }).join("");
+
+  $("phases").innerHTML = d.phases.map(p => `<article class="phase ${p.status}">
+      <span class="num">PHASE ${p.id}</span><h3>${esc(p.name)}</h3>
+      <span class="chip ${p.status}">${{ done: "Done", current: "In progress", next: "Next", later: "Later" }[p.status]}</span>
+      <p>${esc(p.summary)}</p><div class="mini"><i data-w="${p.pct}"></i></div>
+      <div class="mini-row"><span>${p.pct}%</span><span>~${p.months} mo</span></div></article>`).join("");
+  $("areas").innerHTML = d.areas.map(a => `<div class="area"><div class="area-head"><h3>${esc(a.name)}</h3><span>${a.pct}%</span></div>
+      <div class="bar"><i data-w="${a.pct}"></i></div><p>${esc(a.detail)}</p></div>`).join("");
+  $("recent").innerHTML = d.recent.map(r => `<article class="card"><img src="${esc(r.img)}" alt="${esc(r.title)}" loading="lazy">
+      <div><h3>${esc(r.title)}</h3><p>${esc(r.text)}</p></div></article>`).join("");
+  $("next").innerHTML = d.next.map(n => `<li><span>${esc(n)}</span></li>`).join("");
+  $("timeline").innerHTML = d.milestones.map(m => `<li class="${m.done ? "done" : ""}"><time>${m.done ? "Done" : "Upcoming"}</time><span>${esc(m.title)}</span></li>`).join("");
+
+  // playtest countdown
+  const pt = d.playtest || {};
+  $("pt-label").textContent = pt.label || "Closed playtest";
+  if (pt.date) {
+    const days = Math.ceil((new Date(pt.date + "T00:00:00") - new Date()) / 864e5);
+    $("countdown").textContent = days > 1 ? `${days} days` : days === 1 ? "Tomorrow" : days === 0 ? "Today" : "Live now";
+  }
+  $("discord").href = d.discord || "#";
+
+  // fill bars after the first frame so they sweep in
+  requestAnimationFrame(() => requestAnimationFrame(() => document.querySelectorAll("[data-w]").forEach(i => i.style.width = i.dataset.w + "%")));
+
+  if (dev) {
+    $("devboard").hidden = false;
+    $("devgrid").innerHTML = dev.boards.map(b => `<div class="box"><span class="tag">${esc(b.tag)}</span><h3>${esc(b.title)}</h3>
+        <ul>${b.items.map(it => `<li class="${it.done ? "done" : ""}">${esc(it.text)}</li>`).join("")}</ul></div>`).join("");
+  }
+}
+
+(async function () {
+  const d = await fetch("data.json").then(r => r.json());
+  const dev = MODE === "dev" ? await fetch("dev.json").then(r => r.json()).catch(() => null) : null;
+  render(d, dev);
+})();
+</script>
+
+</body></html>

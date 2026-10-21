@@ -1,0 +1,202 @@
+{
+ "updated": "2026-10-21",
+ "note": "Public roadmap data. Phase weights = planned months; overall = weighted average of the phases.",
+ "phases": [
+  {
+   "id": 0,
+   "name": "Pre-production",
+   "months": 0.5,
+   "pct": 100,
+   "status": "done",
+   "summary": "The plan, the art style, the engine and the first characters"
+  },
+  {
+   "id": 1,
+   "name": "Prototype",
+   "months": 1.5,
+   "pct": 100,
+   "status": "done",
+   "summary": "Movement kit, first guns, a test island and the first 2-player match"
+  },
+  {
+   "id": 2,
+   "name": "Vertical slice",
+   "months": 3.5,
+   "pct": 35,
+   "status": "current",
+   "summary": "A full match against bots, polished regions, the storm and the first closed playtest"
+  },
+  {
+   "id": 3,
+   "name": "Alpha",
+   "months": 5,
+   "pct": 0,
+   "status": "later",
+   "summary": "The whole island finished, more weapons and characters, 24-40 player online matches"
+  },
+  {
+   "id": 4,
+   "name": "Beta / Playtest",
+   "months": 2.5,
+   "pct": 0,
+   "status": "later",
+   "summary": "Open Steam playtests, balance, anti-cheat and performance"
+  },
+  {
+   "id": 5,
+   "name": "Early Access",
+   "months": 0.5,
+   "pct": 0,
+   "status": "later",
+   "summary": "Launch: Solo Royale with 6 characters and 8 weapons"
+  }
+ ],
+ "areas": [
+  {
+   "name": "Movement",
+   "pct": 75,
+   "detail": "Sprint, slide, slide hopping, mantle, hurdle, vault through windows, wall kick, lean, landings and a punch all work. Next: smoother climbing animations and per-gun moves",
+   "short": "Sprint, slide hops, mantle, hurdle, window vaults, wall kick, lean and a punch"
+  },
+  {
+   "name": "Weapons",
+   "pct": 45,
+   "detail": "4 guns you can play: Facet AR, Breaker shotgun, Hornet SMG and Sidearm, with 5 rarities and 21 camos, bullet holes and new muzzle sparks. Next: new gun sounds and tracers",
+   "short": "4 guns, 5 rarities, 21 camos, bullet holes and muzzle sparks"
+  },
+  {
+   "name": "Matches and bots",
+   "pct": 55,
+   "detail": "Every match starts on a spawn island: practise, pick your drop, walk through a portal. Then loot, fight 23 bots, and quests while you play. Next: the storm",
+   "short": "Spawn island, portal drop, 23 bots and quests in every match"
+  },
+  {
+   "name": "Shatter Isle",
+   "pct": 50,
+   "detail": "A 2 km island with 8 regions, furnished houses, 288 doors you can lock or bash open and 1,000+ windows that break. Next: a detail pass on each region",
+   "short": "2 km, 8 regions, 288 doors and 1,000+ breakable windows"
+  },
+  {
+   "name": "Characters",
+   "pct": 35,
+   "detail": "Phantom is playable in 4 colourways, with a scarf that swings as you move. Next: the other 5 characters",
+   "short": "Phantom playable in 4 colourways; 5 more to come"
+  },
+  {
+   "name": "Menus and settings",
+   "pct": 65,
+   "detail": "Start-up logos, title, main menu, Locker, full settings, loading screen, new pause menu, full map with markers and pings. Next: settings polish",
+   "short": "Main menu, Locker, full settings, pause menu, full map + pings"
+  },
+  {
+   "name": "Community",
+   "pct": 60,
+   "detail": "The Discord server is open. Next: the closed playtest",
+   "short": "The Discord server is open"
+  }
+ ],
+ "recent": [
+  {
+   "date": "",
+   "title": "First full match",
+   "img": "img/71_First_Full_Match.jpg",
+   "text": "You and 23 bots on Shatter Isle, everyone starting with a sidearm and looting the towns. Bots loot, fight and push, and a match plays out in about 12-15 minutes."
+  },
+  {
+   "date": "",
+   "title": "Weapon camos and the Locker",
+   "img": "img/340_Weapon_Camos.jpg",
+   "text": "21 camos in 3 colours each, on every gun. Preview and equip them in the Locker; everyone in the match sees your pick."
+  },
+  {
+   "date": "",
+   "title": "Vault through windows",
+   "img": "img/68_Window_Vault.jpg",
+   "text": "Jump at a window and you go straight through, glass and all. It shatters into faceted shards."
+  },
+  {
+   "date": "",
+   "title": "Bigger, busier towns",
+   "img": "img/345_Towns.jpg",
+   "text": "Street grids and about 118 new houses, every one furnished and full of loot."
+  },
+  {
+   "date": "",
+   "title": "Meet Phantom",
+   "img": "img/208_Phantom.jpg",
+   "text": "The first character: four colourways, a data scarf and faceted gauntlets."
+  }
+ ],
+ "next": [
+  "The storm: a shrinking safe zone that ends every match",
+  "New gun sounds and footsteps for every ground",
+  "Tracers, shield-break and elimination effects",
+  "A detail pass on each region, starting with Vertex Village",
+  "The spawn island's real look: a dock village out at sea",
+  "Per-gun movement animations",
+  "Closed playtest"
+ ],
+ "milestones": [
+  {
+   "date": "",
+   "title": "Project started",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "Art style, engine and the first characters",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "Shatter Isle in the engine",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "Phantom playable, first 2-player match",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "Full movement kit",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "First full match against 23 bots",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "Spawn island, doors and breakable windows",
+   "done": true
+  },
+  {
+   "date": "",
+   "title": "The storm",
+   "done": false
+  },
+  {
+   "date": "",
+   "title": "Closed playtest (20 slots)",
+   "done": false
+  },
+  {
+   "date": "",
+   "title": "Steam playtest",
+   "done": false
+  },
+  {
+   "date": "",
+   "title": "Early Access",
+   "done": false
+  }
+ ],
+ "playtest": {
+  "label": "Closed playtest",
+  "date": "",
+  "slots": 20
+ },
+ "discord": "https://discord.gg/rpAQsXXg2n"
+}
