@@ -34,7 +34,6 @@ Drop onto a faceted, brightly coloured island, loot weapons and shields, and out
 2. **Shard portal.** When the countdown ends, walk through your own portal and step out at your spot on Shatter Isle.
 3. **Loot.** Search every building: open dressers, fridges and lockers. Doors can be locked from inside or bashed open, and every window breaks.
 4. **Fight.** Rotate ahead of the storm and outplay everyone until one player is left.
-5. **Quests.** Three quests in every match (with a fresh set every few minutes) plus daily quests, all for account XP.
 
 ## The movement kit
 
