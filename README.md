@@ -62,7 +62,7 @@ Every character moves exactly the same, so a skin is never an advantage.
 ## Weapons
 
 - **Playable now:** Facet AR (assault rifle), Breaker (pump shotgun), Hornet SMG and the Sidearm everyone starts with.
-- **Coming:** a burst rifle, an auto shotgun, a sniper, a launcher and more weapons and types of weapons.
+- **Coming:** a burst rifle, an auto shotgun, a sniper, a launcher, more weapons and types of weapons.
 - **Five rarities**, Common to Legendary, with a small damage step per tier. Rifles and SMGs come with an optic from Epic up.
 - **21 weapon camos** plus mastery camos. Looks only.
 
