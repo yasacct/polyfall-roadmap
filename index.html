@@ -123,6 +123,21 @@ a { color: var(--glow); }
 .dev-grid ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink); font-size: .92rem; }
 .dev-grid li.done { color: var(--muted); text-decoration: line-through; }
 .dev-grid .tag { font: 600 .68rem var(--f-display); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+
+/* about the game */
+.about { display: grid; gap: 22px; }
+.pitch { font-size: 1.15rem; max-width: 70ch; margin: 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px; }
+.fact { background: rgba(31,34,40,.9); border: 1px solid var(--line); padding: 12px 14px; display: grid; gap: 4px; }
+.fact span { font: 600 .72rem var(--f-display); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px; }
+.pillar { border-left: 3px solid var(--glow); padding: 4px 0 4px 14px; display: grid; gap: 4px; }
+.pillar h3 { font-size: 1.05rem; } .pillar p { margin: 0; color: var(--muted); font-size: .92rem; }
+.about-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 14px; }
+.about-cards .box h3 { font-size: 1.1rem; color: var(--glow); }
+.about-cards ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink); font-size: .95rem; }
+.about-cards li::marker { color: var(--orange); }
+.about-cards b { color: #fff; }
 footer { color: var(--muted); font-size: .85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line); padding-top: 18px; }
 @media (prefers-reduced-motion: reduce) { .mini i, .bar i, .shard { transition: none !important; } }
 </style>
@@ -147,6 +162,12 @@ footer { color: var(--muted); font-size: .85rem; display: flex; justify-content:
     </div>
   </section>
 
+  <section class="about" aria-labelledby="h-about"><h2 id="h-about">About the game</h2>
+    <p class="pitch" id="pitch"></p>
+    <div class="facts" id="facts"></div>
+    <div class="pillars" id="pillars"></div>
+    <div class="about-cards" id="about-cards"></div>
+  </section>
   <section aria-labelledby="h-phases"><h2 id="h-phases">Phases</h2><div class="phases" id="phases" style="margin-top:16px"></div></section>
   <section aria-labelledby="h-areas"><h2 id="h-areas">Parts of the game</h2><div class="areas" id="areas" style="margin-top:16px"></div></section>
   <section aria-labelledby="h-recent"><h2 id="h-recent">Recently done</h2><div class="recent" id="recent" style="margin-top:16px"></div></section>
@@ -265,6 +286,15 @@ function render(d, dev) {
       <div class="bar"><i data-w="${a.pct}"></i></div><p>${esc(a.detail)}</p></div>`).join("");
   $("recent").innerHTML = d.recent.map(r => `<article class="card"><img src="${esc(r.img)}" alt="${esc(r.title)}" loading="lazy">
       <div><h3>${esc(r.title)}</h3><p>${esc(r.text)}</p></div></article>`).join("");
+
+  // about the game (bold = **text**)
+  const md = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+  if (d.about) {
+    $("pitch").textContent = d.about.pitch;
+    $("facts").innerHTML = d.about.facts.map(f => `<div class="fact"><span>${esc(f[0])}</span>${esc(f[1])}</div>`).join("");
+    $("pillars").innerHTML = d.about.pillars.map(p => `<div class="pillar"><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p></div>`).join("");
+    $("about-cards").innerHTML = d.about.cards.map(c => `<div class="box"><h3>${esc(c.title)}</h3><ul>${c.items.map(i => `<li>${md(i)}</li>`).join("")}</ul></div>`).join("");
+  }
   $("next").innerHTML = d.next.map(n => `<li><span>${esc(n)}</span></li>`).join("");
   $("timeline").innerHTML = d.milestones.map(m => `<li class="${m.done ? "done" : ""}"><time>${m.done ? "Done" : "Upcoming"}</time><span>${esc(m.title)}</span></li>`).join("");
 

@@ -198,5 +198,134 @@
   "date": "",
   "slots": 20
  },
- "discord": "https://discord.gg/rpAQsXXg2n"
+ "discord": "https://discord.gg/rpAQsXXg2n",
+ "about": {
+  "pitch": "POLYFALL is a first-person, low-poly battle royale where movement replaces building. Drop onto a faceted, brightly coloured island, loot weapons and shields, and outmove everyone else. No building, no edits: positioning, cover and movement skill decide every fight.",
+  "facts": [
+   [
+    "Genre",
+    "Zero-build battle royale, first person"
+   ],
+   [
+    "Players",
+    "24-40 per match, bots fill empty slots"
+   ],
+   [
+    "Match length",
+    "About 12-18 minutes"
+   ],
+   [
+    "Platform",
+    "PC on Steam first"
+   ],
+   [
+    "Runs on",
+    "Mid-range PCs at 60+ FPS, down to a GTX 1650 / Steam Deck on Low"
+   ],
+   [
+    "Made by",
+    "A solo developer, Shardwork Games"
+   ]
+  ],
+  "pillars": [
+   [
+    "Movement is the build",
+    "Traversal is the skill ceiling. Every surface invites a slide, a vault or a climb."
+   ],
+   [
+    "Readable at a glance",
+    "Clean low-poly shapes and a strict palette make enemies, loot and cover easy to read."
+   ],
+   [
+    "Short, tense matches",
+    "Smaller lobbies, a fast storm and frequent fights."
+   ]
+  ],
+  "cards": [
+   {
+    "title": "How a match works",
+    "items": [
+     "Start on the **spawn island**, out at sea: practise your movement and pick where you want to drop on the map.",
+     "Walk through your own **shard portal** and step out at your spot on Shatter Isle.",
+     "**Loot** every building: open dressers, fridges and lockers; doors can be locked from inside or bashed open; windows break.",
+     "**Fight** and rotate ahead of the storm until one player is left.",
+     "**Quests** in every match and daily ones give account XP."
+    ]
+   },
+   {
+    "title": "The movement kit",
+    "items": [
+     "**Sprint** and a **tactical sprint** burst across open ground.",
+     "**Slide** and **slide-hop**: jump out of a slide and land straight into the next.",
+     "**Mantle** ledges up to about 2 m, **hurdle** waist-high cover, **vault through windows**.",
+     "**Wall kick** for one extra jump, **lean** around corners, a quick **punch** when you're out of options.",
+     "Every character moves exactly the same: a skin is never an advantage."
+    ]
+   },
+   {
+    "title": "Health and shields",
+    "items": [
+     "**150 health + 150 shield**, nothing hidden.",
+     "Shield comes from **Shards** you carry and crush: a small Shard (+25) in one hand while you keep shooting, a **Core Shard** (+50) with both hands.",
+     "Crushing is loud and visible: a teal burst and a glass crack others can hear."
+    ]
+   },
+   {
+    "title": "Weapons",
+    "items": [
+     "Playable now: **Facet AR**, **Breaker** pump shotgun, **Hornet SMG** and the **Sidearm** everyone starts with.",
+     "Coming: a burst rifle, an auto shotgun, a sniper and a launcher.",
+     "Five rarities, Common to Legendary, a small damage step per tier; rifles and SMGs get an optic from Epic up.",
+     "21 weapon camos plus mastery camos: looks only."
+    ]
+   },
+   {
+    "title": "Shatter Isle",
+    "items": [
+     "About 2 km across, with a crashed data core in the middle and eight regions around it.",
+     "**Core Crater** (hot drop) · **Vertex Village** (house-to-house) · **Prism Port** (desert docks) · **Glitch Mall** (indoor fights) · **Overclock Yards** (cranes and containers) · **Frostbyte Lodge** (ski slopes) · **Static Heights** (icy caves) · **Uncharted Land** (dense forest).",
+     "Every building has two or more ways in and a roof you can climb to."
+    ]
+   },
+   {
+    "title": "The story",
+    "items": [
+     "**The Render** is a simulation built to preserve a dying world. A crash rebuilt it at minimum detail: the low-poly look.",
+     "Its last copies of people, the **Echoes**, fight in the Shatter Isle trials. The winner's data is saved; everyone else is reset.",
+     "Three factions: the **Wardens** (security programs), the **Fractured** (corrupted Echoes) and the **Drifters** (mercenaries)."
+    ]
+   },
+   {
+    "title": "Characters",
+    "items": [
+     "**Phantom**, a Warden scout with a hard-light data scarf, is playable in four colourways.",
+     "Coming: **Byte**, **Shard**, **Nomad**, **Glitch** and **Rook**.",
+     "Characters are cosmetic only; abilities come from the Assist Kit."
+    ]
+   },
+   {
+    "title": "Assist Kit, kept fair",
+    "items": [
+     "Everyone brings **one active assist and one passive perk**, for example a short dash or faster mantling.",
+     "No damage, health, shield or accuracy boosts; long cooldowns; every ability has a visible tell and a counter.",
+     "Levelling unlocks choices and sidegrades, never more power."
+    ]
+   },
+   {
+    "title": "Modes",
+    "items": [
+     "At launch: **Solo Royale** with bots filling the lobby, and the **Range**, a training mode with targets, bots and drills.",
+     "Later: Duos and Trios, Zone Wars, a Zombies mode, more PvP modes and a story campaign."
+    ]
+   },
+   {
+    "title": "Promises",
+    "items": [
+     "**Money only buys cosmetics.** No stat unlocks, ever.",
+     "Built for PC first, tuned to run on modest hardware.",
+     "Original world, characters and art."
+    ]
+   }
+  ]
+ }
 }
