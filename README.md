@@ -107,7 +107,7 @@ Every building has two or more ways in and a roof you can climb to.
 
 ## Modes
 
-- **At launch:** Solo Royale with bots filling the lobby, and **the Range**, a training mode with targets, training bots, drills and a movement course.
+- **At launch:** a Solo Battle Royale mode, and **the Range**, a training mode with targets, training bots, drills and a movement course.
 - **Later:** Duos and Trios, Zone Wars, a Zombies mode, more PvP modes and a story campaign.
 
 ## Our promises
