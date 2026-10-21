@@ -54,43 +54,43 @@
  "areas": [
   {
    "name": "Movement",
-   "pct": 75,
+   "pct": 33,
    "detail": "Sprint, slide, slide hopping, mantle, hurdle, vault through windows, wall kick, lean, landings and a punch all work. Next: smoother climbing animations and per-gun moves",
    "short": "Sprint, slide hops, mantle, hurdle, window vaults, wall kick, lean and a punch"
   },
   {
    "name": "Weapons",
-   "pct": 45,
+   "pct": 22,
    "detail": "4 guns you can play: Facet AR, Breaker shotgun, Hornet SMG and Sidearm, with 5 rarities and 21 camos, bullet holes and new muzzle sparks. Next: new gun sounds and tracers",
    "short": "4 guns, 5 rarities, 21 camos, bullet holes and muzzle sparks"
   },
   {
    "name": "Matches and bots",
-   "pct": 55,
+   "pct": 28,
    "detail": "Every match starts on a spawn island: practise, pick your drop, walk through a portal. Then loot, fight 23 bots, and quests while you play. Next: the storm",
    "short": "Spawn island, portal drop, 23 bots and quests in every match"
   },
   {
    "name": "Shatter Isle",
-   "pct": 50,
+   "pct": 13,
    "detail": "A 2 km island with 8 regions, furnished houses, 288 doors you can lock or bash open and 1,000+ windows that break. Next: a detail pass on each region",
    "short": "2 km, 8 regions, 288 doors and 1,000+ breakable windows"
   },
   {
    "name": "Characters",
-   "pct": 35,
+   "pct": 16,
    "detail": "Phantom is playable in 4 colourways, with a scarf that swings as you move. Next: the other 5 characters",
    "short": "Phantom playable in 4 colourways; 5 more to come"
   },
   {
    "name": "Menus and settings",
-   "pct": 65,
+   "pct": 31,
    "detail": "Start-up logos, title, main menu, Locker, full settings, loading screen, new pause menu, full map with markers and pings. Next: settings polish",
    "short": "Main menu, Locker, full settings, pause menu, full map + pings"
   },
   {
    "name": "Community",
-   "pct": 60,
+   "pct": 18,
    "detail": "The Discord server is open. Next: the closed playtest",
    "short": "The Discord server is open"
   }
