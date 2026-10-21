@@ -96,7 +96,7 @@ Every building has two or more ways in and a roof you can climb to.
 ## Characters
 
 - **Phantom**, a Warden scout with a long hard-light data scarf, is playable in four colourways.
-- **Coming:** Byte, Shard, Nomad, Glitch and Rook.
+- **Coming:** Byte, Shard, Nomad, Glitch, Rook and more.
 - Characters are cosmetic only. Abilities come from the Assist Kit.
 
 ## Assist Kit, kept fair
